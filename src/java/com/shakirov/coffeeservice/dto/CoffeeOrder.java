@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.shakirov.coffeeservice.dto;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,14 +8,15 @@ import java.util.List;
  *
  * @author vadim.shakirov
  */
+
 public class CoffeeOrder {
     
     private int id;
-    private Date orderDate;
+    private Timestamp orderDate;
     private String name;
     private String deliveryAddress;
     private double cost;
-    private final List<CoffeeOrderItem> items;
+    private final List<CoffeeOrderItem> items = new ArrayList<>();
     
     public int getId() {
         return id;
@@ -30,11 +26,11 @@ public class CoffeeOrder {
         this.id = id;
     }
     
-    public Date getOrderDate() {
+    public Timestamp getOrderDate() {
         return orderDate;
     }
     
-    public void setOrderDate(Date date) {
+    public void setOrderDate(Timestamp date) {
         this.orderDate = date;
     }
     
@@ -72,18 +68,6 @@ public class CoffeeOrder {
     
     public void add(List<CoffeeOrderItem> list) {
         items.addAll(list);
-    }
-    
-    public CoffeeOrder( int id, Date orderDate, 
-                        String name, String deliveryAddress, 
-                        double cost) 
-    {
-        this.id = id;
-        this.orderDate = orderDate;
-        this.name = name;
-        this.deliveryAddress = deliveryAddress;
-        this.cost = cost;
-        items = new ArrayList<>();
     }
 
 }

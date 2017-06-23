@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.shakirov.coffeeservice.servlets;
 
 import com.shakirov.coffeeservice.dao.CoffeeTypeListDao;
 import com.shakirov.coffeeservice.dao.DaoFactory;
+import com.shakirov.coffeeservice.utils.SettingsUtil;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -35,10 +31,9 @@ public class CoffeeTypeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        DaoFactory factory = DaoFactory.getInstance();
         CoffeeTypeListDao list;
         try {
-            list = factory.getCoffeeTypeList();
+            list = DaoFactory.getInstance(SettingsUtil.getDataSource()).getCoffeeTypeList();
         } catch (SQLException ex) {
             Logger.getLogger(CoffeeTypeServlet.class.getName()).log(Level.SEVERE, null, ex);
             throw new ServletException(ex.fillInStackTrace());
